@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
             width: 1,
             height: 2,
         },
-        textShadowRadius: 2,
-        flex: 1,
+		textShadowRadius: 2,
+		marginTop: 10,
     },
     reviews: {
         color: 'white',
@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
         textShadowRadius: 2,
     },
     image: {
-        ...StyleSheet.absoluteFillObject,
+		...StyleSheet.absoluteFillObject,
+		resizeMode: 'stretch',
         width: undefined,
         height: undefined,
     },

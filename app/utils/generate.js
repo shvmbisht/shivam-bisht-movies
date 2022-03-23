@@ -1,5 +1,5 @@
 import 'react-native-get-random-values';
-import {times} from 'rambdax';
+import {times,random} from 'rambdax';
 import {v4 as uuid} from 'uuid';
 import moviesData from '@data/Movies';
 import reviewsData from '@data/Reviews';
@@ -14,11 +14,14 @@ const fuzzCount = (count) => {
 };
 
 const makeRandomMovie = (i) => {
-    const movie = moviesData[i];
-    return {
-        id: uuid(),
-        ...movie,
-    };
+	const movie =
+		i >= moviesData.length
+			? moviesData[random(0, moviesData.length - 1)]
+			: moviesData[i];
+	return {
+		id: uuid(),
+		...movie,
+	};
 };
 
 const makeRandomReview = (i) => {

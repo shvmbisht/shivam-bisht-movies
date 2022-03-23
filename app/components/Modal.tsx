@@ -60,6 +60,15 @@ function titleCase(value: string): string {
     return title;
 }
 
+function titleCaseString(value: string): string {
+	let title = [];
+	const strArray = value.split(' ');
+	for (let elem of strArray) {
+		title.push(elem[0].toUpperCase() + elem.slice(1).toLowerCase());
+	}
+	return title.join(' ');
+}
+
 const Modal = ({movie, position, close}: ModalProps) => {
     const dimensions = useWindowDimensions();
     const width = createValue(dimensions.width);
@@ -134,12 +143,14 @@ const Modal = ({movie, position, close}: ModalProps) => {
                 <View style={styles.content}>
                     <ScrollView>
                         <Text style={styles.paragraph}>
-                            <Text style={{fontWeight: 'bold'}}>
-                                {`${titleCase(movie.name)} `}
+                            <Text style={styles.name}>
+                                {`${titleCaseString(movie.name)} `}
                             </Text>
-                            <Text style={styles.paragraph}>
-                                {movie.description}
-                            </Text>
+                            <View>
+                                <Text style={styles.paragraph}>
+                                    {movie.description}
+                                </Text>
+                            </View>
                         </Text>
                     </ScrollView>
                 </View>
@@ -155,10 +166,15 @@ const styles = StyleSheet.create({
     content: {
         padding: 16,
         flex: 1,
-    },
+	},
+	name: {
+		fontWeight: 'bold',
+		fontSize: 24,
+	},
     paragraph: {
-        fontSize: 24,
+        fontSize: 20,
         marginBottom: 16,
+        marginTop: 5,
     },
 });
 
